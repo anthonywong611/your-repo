@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "your-package-name"
+version = "0.1.0"
+description = "One-sentence summary of what this package does."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "Your Name", email = "you@example.com" }]
+keywords = ["utilities", "example"]
+classifiers = [
+   "Programming Language :: Python :: 3",
+   "License :: OSI Approved :: MIT License",
+   "Typing :: Typed",
+]
+
+dependencies = [
+   # e.g. "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+   "pytest>=8",
+   "pytest-cov>=5",
+   "mypy>=1.10",
+   "ruff>=0.5",
+   "build>=1.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/anthonywong611/your-repo.git"
+Repository = "https://github.com/anthonywong611/your-repo.git"
+Issues = "https://github.com/anthonywong611/your-repo.git/issues"
+
+# Optional CLI example:
+# [project.scripts]
+# your-cli = "your_package_name.core:main"
+
+# --- Tooling config in one place (nice and tidy) ---
+[tool.pytest.ini_options]
+addopts = "-q --disable-warnings"
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 100
+
+# --- Tell Hatchling where your package lives (src layout) ---
+[tool.hatch.build.targets.wheel]
+packages = ["src/your_package_name"]
+
+# Ensure typed marker ships
+[tool.hatch.build]
+include = ["src/your_package_name/py.typed", "README.md", "LICENSE", "CHANGELOG.md"]
+
